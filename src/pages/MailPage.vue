@@ -22,12 +22,7 @@
             </q-chip>
           </div>
         </div>
-        <q-editor
-          v-model="editor"
-          :definitions="{
-        bold: {label: 'Bold', icon: null, tip: 'My bold tooltip'}
-      }"
-        />
+        <mail-content />
       </div>
       <div class="col">
         <mail-card />
@@ -43,9 +38,8 @@ import {ref} from "vue";
 import MailChat from "components/MailChat.vue";
 import MailCard from "components/MailCard.vue";
 import MailList from "components/MailList.vue";
-import MailActions from "pages/MailActions.vue";
-
-const editor =  ref('Here we are overriding the <b>bold</b> command to include a label instead of an icon and also changing its tooltip.')
+import MailActions from "components/MailActions.vue";
+import MailContent from "components/MailContent.vue";
 </script>
 
 <style lang="sass" scoped>

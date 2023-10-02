@@ -4,8 +4,8 @@
     <q-card-section>
       <div class="row items-center no-wrap">
         <div class="col">
-          <div class="text-h6">Status płatności PBSR-VNL-VWM</div>
-          <div class="text-subtitle2">by John Doe</div>
+          <div class="text-h6">{{ message.subject }}</div>
+          <div class="text-subtitle2">{{ message.from.name }} </div>
         </div>
 
         <div class="col-auto">
@@ -53,7 +53,10 @@
 
 
 <script setup>
+import MessageResponse from 'assets/message_response.json'
+import {ref} from "vue";
 
+const message = ref(MessageResponse)
 </script>
 
 <style lang="sass" scoped>

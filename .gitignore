@@ -1,6 +1,7 @@
 #IDE
 .idea
 .vscode
+src/assets/
 
 .DS_Store
 .thumbs.db

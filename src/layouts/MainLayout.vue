@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import {defineComponent, ref} from 'vue'
+import {ref} from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 
 const essentialLinks = [
@@ -77,7 +77,7 @@ const essentialLinks = [
 ]
 
 
-const leftDrawerOpen = ref(true);
+const leftDrawerOpen = ref(false);
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
