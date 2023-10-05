@@ -5,9 +5,10 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
-      { path: 'users', component: () => import('pages/UsersPage.vue') },
-      { path: 'mail', component: () => import('pages/MailPage.vue') },
-      { path: 'settings', component: () => import('pages/UsersPage.vue') }
+      { path: 'users', component: () => import('pages/Users/UsersPage.vue') },
+      { path: 'mail', component: () => import('pages/Mail/MailPage.vue') },
+      { path: 'settings', component: () => import('pages/Settings/SettingsPage.vue') },
+      { path: 'mail/register', component: () => import('pages/Mail/MailRegister.vue') }
     ]
   },
 

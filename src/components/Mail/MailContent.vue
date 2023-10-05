@@ -127,7 +127,7 @@
 
 <script setup>
 import { ref } from "vue";
-import MessageBody from 'src/assets/message_response_text.json'
+import MessageBody from 'assets/message_response_text.json'
 
 const body = ref(MessageBody.html)
 

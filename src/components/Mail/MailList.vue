@@ -41,10 +41,24 @@
 </template>
 
 <script setup>
-import AccountMessagesResponse from 'src/assets/account_messages_response.json'
+import AccountMessagesResponse from 'assets/account_messages_response.json'
 import {ref} from "vue";
+import {useUserApi} from "src/composables/api/mailApi";
 
-const messages = ref(AccountMessagesResponse.messages)
+const api = useUserApi();
+
+const messages = ref(null)
+
+
+
+async function getMessages(){
+  const {data} = await api.get('http://localhost:3000/v1/account/MGU_123/messages?path=INBOX&page=0&pageSize=20&documentStore=false')
+
+  messages.value = data.messages;
+
+}
+
+getMessages()
 </script>
 
 <style lang="sass" scoped>

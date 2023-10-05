@@ -9,6 +9,12 @@ import axios from 'axios'
 // for each client)
 const api = axios.create({ baseURL: 'https://api.example.com' })
 
+const emailApi = axios.create({
+  baseURL: process.env.VUE_EE_URL,
+  headers: {
+    'Authorization': 'Bearer ' + process.env.VUE_EE_TOKEN
+  },
+});
 export default boot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
@@ -21,4 +27,4 @@ export default boot(({ app }) => {
   //       so you can easily perform requests against your app's API
 })
 
-export { api }
+export { api, emailApi }

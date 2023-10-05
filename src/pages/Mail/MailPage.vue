@@ -19,11 +19,11 @@
 
 <script setup>
 import {ref} from "vue";
-import MailChat from "components/MailChat.vue";
-import MailCard from "components/MailCard.vue";
-import MailList from "components/MailList.vue";
-import MailActions from "components/MailActions.vue";
-import MailContent from "components/MailContent.vue";
+import MailChat from "components/Mail/MailChat.vue";
+import MailCard from "components/Mail/MailCard.vue";
+import MailList from "components/Mail/MailList.vue";
+import MailActions from "components/Mail/MailActions.vue";
+import MailContent from "components/Mail/MailContent.vue";
 </script>
 
 <style lang="sass" scoped>
