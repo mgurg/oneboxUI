@@ -1,39 +1,38 @@
 <template>
   <div class="flex m-10">
-    <draggable class="dragArea list-group w-full" :list="list" @change="log">
-      <div
-        class="list-group-item bg-gray-300 m-1 p-3 rounded-md text-center"
+    <draggable :list="list" class="dragArea list-group w-full" @change="log">
+
+      <q-card
         v-for="element in list"
         :key="element.name"
+        class="q-ma-md"
       >
-        {{ element.name }}
-      </div>
+        <q-card-section>
+          {{ element.name }}
+        </q-card-section>
+      </q-card>
+
     </draggable>
   </div>
 </template>
-<script>
-import { defineComponent } from 'vue'
-import { VueDraggableNext } from 'vue-draggable-next'
-export default defineComponent({
-  components: {
-    draggable: VueDraggableNext,
-  },
-  data() {
-    return {
-      enabled: true,
-      list: [
-        { name: 'John', id: 1 },
-        { name: 'Joao', id: 2 },
-        { name: 'Jean', id: 3 },
-        { name: 'Gerard', id: 4 },
-      ],
-      dragging: false,
-    }
-  },
-  methods: {
-    log(event) {
-      console.log(event)
-    },
-  },
-})
+
+
+<script setup>
+
+import {ref} from "vue";
+import {VueDraggableNext as draggable} from "vue-draggable-next";
+
+const enabled = ref(true);
+const list = ref([
+  {name: 'John', id: 1},
+  {name: 'Joao', id: 2},
+  {name: 'Jean', id: 3},
+  {name: 'Gerard', id: 4},
+]);
+const dragging = ref(false);
+
+function log(event) {
+  console.log(event)
+}
+
 </script>
