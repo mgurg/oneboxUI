@@ -1,7 +1,5 @@
 <template>
 
-  <q-infinite-scroll @load="requestEmails" :offset="10" ref="scroller">
-  </q-infinite-scroll>
   <q-list bordered class="rounded-borders" style="max-width: 600px">
     <q-item-label header>Google Inbox style</q-item-label>
     <q-item-label>
