@@ -1,6 +1,13 @@
 <template>
+
+  <q-infinite-scroll @load="requestEmails" :offset="10" ref="scroller">
+  </q-infinite-scroll>
   <q-list bordered class="rounded-borders" style="max-width: 600px">
     <q-item-label header>Google Inbox style</q-item-label>
+    <q-item-label>
+      <q-input filled></q-input>
+      <mail-folders />
+    </q-item-label>
 
     <div v-for="(message, index) in messages" v-if="messages != null" v-bind:key="index">
 
@@ -44,18 +51,27 @@
 import AccountMessagesResponse from 'assets/account_messages_response.json'
 import {ref} from "vue";
 import {useUserApi} from "src/composables/api/mailApi";
+import MailFolders from "components/Mail/MailFolders.vue";
 
 const api = useUserApi();
 
 const messages = ref(null)
 
+const loading = ref(false)
 
 
 async function getMessages(){
-  const {data} = await api.get('http://localhost:3000/v1/account/MGU_123/messages?path=INBOX&page=0&pageSize=20&documentStore=false')
+  const {data} = await api.get('http://localhost:3000/v1/account/MGU_123/messages?path=INBOX&page=0&pageSize=10&documentStore=false')
 
+  console.log(data);
   messages.value = data.messages;
 
+}
+
+async function requestEmails(){
+  loading.value=true;
+
+  loading.value=false;
 }
 
 getMessages()

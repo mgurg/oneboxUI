@@ -21,6 +21,10 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
+      :mini="miniState"
+      @mouseover="miniState = false"
+      @mouseout="miniState = true"
+      mini-to-overlay
       bordered
       show-if-above
     >
@@ -78,6 +82,8 @@ const essentialLinks = [
 
 
 const leftDrawerOpen = ref(false);
+
+const miniState = ref(true)
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
