@@ -8,6 +8,7 @@ const routes = [
       { path: 'users', component: () => import('pages/Users/UsersPage.vue') },
       { path: 'mail', component: () => import('pages/Mail/MailPage.vue') },
       { path: 'settings', component: () => import('pages/Settings/SettingsPage.vue') },
+      { path: 'kanban', component: () => import('pages/Kanban/KanbanPage.vue') },
       { path: 'mail/register', component: () => import('pages/Mail/MailRegister.vue') }
     ]
   },
