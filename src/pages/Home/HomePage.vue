@@ -1,7 +1,6 @@
 <template>
-  <div>Hello World</div>
   <top-bar/>
-
+  <q-space />
   <top-cards/>
   <div class="row full-width">
     <div class="col bg-amber-1">

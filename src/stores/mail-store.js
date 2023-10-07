@@ -3,7 +3,8 @@ import {defineStore} from 'pinia';
 export const useMailStore = defineStore('mail', {
   state: () => ({
     mailId: null,
-    mailbox: 'INBOX'
+    mailbox: 'INBOX',
+    mailList: []
   }),
   getters: {
     getMailId: (state) => state.mailId,
@@ -17,5 +18,8 @@ export const useMailStore = defineStore('mail', {
     setMailbox(name) {
       this.mailbox = name;
     },
+    setMailList(list){
+      this.mailList = list;
+    }
   },
 });

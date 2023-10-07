@@ -1,6 +1,6 @@
 <template>
-  <q-scroll-area class="q-pa-xs q-ma-xs" style="height: 100%;">
-    <q-card v-if="messageDetails!==null" bordered flat>
+    <div  class="fit" style="border: #1D1D1D 1px;">
+    <q-card v-if="messageDetails!==null" bordered flat class="full-height">
       <q-card-section vertical>
         <div class="row">
           <div class="col">
@@ -9,9 +9,11 @@
             <div class="text-caption text-grey-8">Do: {{ messageDetails.to[0].address }}</div>
           </div>
           <div class="col-auto">
-            <div class="row">
+            <div class="text-grey-8 q-gutter-xs">
               <q-avatar color="primary" rounded size="md" text-color="white">JA</q-avatar>
-              <q-btn color="grey-7" flat icon="more_vert" round>
+              <q-btn class="gt-xs" size="12px" flat dense round icon="delete" @click="deleteEmail(messageDetails.id)" />
+              <q-btn class="gt-xs" size="12px" flat dense round icon="done" />
+              <q-btn size="12px" flat dense round icon="more_vert" >
                 <q-menu auto-close cover>
                   <q-list>
                     <q-item clickable>
@@ -47,6 +49,10 @@
             </q-chip>
           </div>
         </div>
+      </q-card-section>
+
+      <q-card-section>
+        <iframe :srcdoc="messageDetails.text.html" style="width: 100%; height: 60vh; border: #ffffff"></iframe>
       </q-card-section>
     </q-card>
 
@@ -118,22 +124,15 @@
     <!--  </q-card>-->
 
 
-    <q-card v-if="messageDetails!==null" bordered flat>
-      <q-card-section>
-        <iframe :srcdoc="messageDetails.text.html" style="width: 100%; height: 50vh; border: #dddddd"></iframe>
-      </q-card-section>
-    </q-card>
-
-
-<!--    <q-card v-if="messageDetails!==null" bordered flat>-->
+<!--    <q-card v-if="messageDetails!==null" bordered flat >-->
 <!--      <q-card-section>-->
-<!--        <q-editor-->
-<!--          v-model="editor"-->
-<!--          :definitions="{ bold: { label: 'Bold', icon: null, tip: 'My bold tooltip' }  }"-->
-<!--        />-->
+<!--        <iframe :srcdoc="messageDetails.text.html" style="width: 100%; height: 50vh; border: #dddddd"></iframe>-->
 <!--      </q-card-section>-->
 <!--    </q-card>-->
-  </q-scroll-area>
+
+
+    </div>
+
 </template>
 
 
@@ -162,7 +161,10 @@ const fetchMessage = async (eid) => {
   messageDetails.value = data
 };
 
-const editor = ref('Here we are overriding the <b>bold</b> command to include a label instead of an icon and also changing its tooltip.')
+const deleteEmail = async (eid) => {
+  const {data} = await api.delete(`http://localhost:3000/v1/account/MGU_123/message/${eid}`)
+  console.log(data)
+};
 
 
 
