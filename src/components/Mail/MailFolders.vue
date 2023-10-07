@@ -1,5 +1,5 @@
 <template>
-  <q-btn flat class="full-width q-py-xs q-my-sm" color="primary" label="Foldery">
+  <q-btn flat class="full-width q-py-xs q-my-sm" color="primary" label="INBOX">
     <q-menu>
       <q-list dense style="min-width: 100px">
         <q-item clickable v-close-popup>

@@ -27,5 +27,6 @@ import MailContent from "components/Mail/MailContent.vue";
 </script>
 
 <style lang="sass" scoped>
+// https://stackoverflow.com/questions/69840924/how-to-have-q-card-take-full-height-in-q-splitter-in-quasar
 </style>
 

@@ -4,7 +4,6 @@
   <q-list bordered class="rounded-borders" style="min-height: 70vh;">
     <q-item-label header>  Page: {{ page }} Total: {{ totalPages }}</q-item-label>
     <q-item-label>
-      <q-input filled></q-input>
       <mail-folders/>
     </q-item-label>
 
