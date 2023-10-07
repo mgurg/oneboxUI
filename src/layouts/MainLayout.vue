@@ -97,6 +97,12 @@ const essentialLinks = [
     icon: 'settings',
     link: '/settings'
   },
+  {
+    title: 'Lab',
+    caption: 'github.com/quasarframework',
+    icon: 'science',
+    link: '/lab'
+  },
 ]
 
 
