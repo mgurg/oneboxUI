@@ -20,7 +20,7 @@
 
         <div v-for="(message, index) in messages" v-if="messages != null" v-bind:key="message.id">
 
-          <q-item>
+          <q-item clickable @click="saveMailId(message.id)">
             <!--        <q-item-section avatar top>-->
             <!--          <q-avatar color="primary" rounded text-color="white">JA</q-avatar>-->
             <!--        </q-item-section>-->
@@ -30,9 +30,9 @@
                 <span class="text-weight-medium">{{ message.subject }}</span>
 
               </q-item-label>
-              <q-item-label lines="2">
-                Wejdź na nasz fanpage i polub Zwoltex! Śledź nasze nowości i bądź z na bieżąco z promocjami.
-              </q-item-label>
+<!--              <q-item-label lines="2">-->
+<!--                Wejdź na nasz fanpage i polub Zwoltex! Śledź nasze nowości i bądź z na bieżąco z promocjami.-->
+<!--              </q-item-label>-->
               <q-item-label lines="1">
                 <span class="text-grey-8">{{ message.from.name }}</span>
               </q-item-label>
@@ -74,6 +74,8 @@
 import {computed, onBeforeMount, ref} from 'vue'
 import {useUserApi} from "src/composables/api/mailApi";
 import MailFolders from "components/Mail/MailFolders.vue";
+import {useMailStore} from "stores/mail-store";
+const store = useMailStore()
 
 const itemsRef = ref([{}, {}, {}, {}, {}, {}, {}])
 const scrollTargetRef = ref(null)
@@ -122,6 +124,12 @@ const loadMore = async () => {
     page.value++;
   }
 };
+
+
+function saveMailId(id){
+  store.setMailId(id);
+  console.log(id)
+}
 
 onBeforeMount(() => {
   fetchMessages()

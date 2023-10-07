@@ -104,6 +104,8 @@ const leftDrawerOpen = ref(false);
 
 const miniState = ref(true)
 
+const text = ref('')
+
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }

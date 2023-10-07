@@ -1,6 +1,6 @@
 <template>
-  <q-scroll-area style="height: 100%;" class="q-pa-xs q-ma-xs">
-    <q-card v-if="messageDetails!==null" flat bordered>
+  <q-scroll-area class="q-pa-xs q-ma-xs" style="height: 100%;">
+    <q-card v-if="messageDetails!==null" bordered flat>
       <q-card-section vertical>
         <div class="row">
           <div class="col">
@@ -118,28 +118,41 @@
     <!--  </q-card>-->
 
 
-    <q-card v-if="messageDetails!==null" flat bordered>
+    <q-card v-if="messageDetails!==null" bordered flat>
       <q-card-section>
         <iframe :srcdoc="messageDetails.text.html" style="width: 100%; height: 50vh; border: #dddddd"></iframe>
       </q-card-section>
     </q-card>
 
 
-    <q-card v-if="messageDetails!==null" flat bordered>
-      <q-card-section>
-        <q-editor v-model="editor" :definitions="{
-    bold: { label: 'Bold', icon: null, tip: 'My bold tooltip' }
-  }"/>
-      </q-card-section>
-    </q-card>
+<!--    <q-card v-if="messageDetails!==null" bordered flat>-->
+<!--      <q-card-section>-->
+<!--        <q-editor-->
+<!--          v-model="editor"-->
+<!--          :definitions="{ bold: { label: 'Bold', icon: null, tip: 'My bold tooltip' }  }"-->
+<!--        />-->
+<!--      </q-card-section>-->
+<!--    </q-card>-->
   </q-scroll-area>
 </template>
 
 
 <script setup>
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import {useUserApi} from "src/composables/api/mailApi";
+import {useMailStore} from "stores/mail-store";
+import {storeToRefs} from "pinia";
 
+const mailStore = useMailStore()
+
+const {mailId} = storeToRefs(mailStore)
+
+watch(mailId, () => {
+  console.log('mailId ref changed, do something!' + mailId.value)
+  fetchMessage(mailId.value);
+})
+
+// TODO: https://runthatline.com/pinia-watch-state-getters-inside-vue-components/
 const messageDetails = ref(null)
 
 const api = useUserApi();
@@ -152,7 +165,7 @@ const fetchMessage = async (eid) => {
 const editor = ref('Here we are overriding the <b>bold</b> command to include a label instead of an icon and also changing its tooltip.')
 
 
-fetchMessage('AAAAAQAAajo')
+
 </script>
 
 

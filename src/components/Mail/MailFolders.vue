@@ -2,11 +2,11 @@
   <q-btn flat class="full-width q-py-xs q-my-sm" color="primary" label="INBOX">
     <q-menu>
       <q-list dense style="min-width: 100px">
-        <q-item clickable v-close-popup>
-          <q-item-section>Open...</q-item-section>
+        <q-item clickable v-close-popup @click="saveFolderName('INBOX')">
+          <q-item-section>INBOX</q-item-section>
         </q-item>
-        <q-item clickable v-close-popup>
-          <q-item-section>New</q-item-section>
+        <q-item clickable v-close-popup @click="saveFolderName('SPAM')">
+          <q-item-section>SPAM</q-item-section>
         </q-item>
         <q-separator />
         <q-item clickable>
@@ -54,6 +54,14 @@
 </template>
 
 <script setup>
+import {useMailStore} from "stores/mail-store";
+const store = useMailStore()
+
+function saveFolderName(name){
+  store.setMailbox(name);
+}
+
+
 
 </script>
 
