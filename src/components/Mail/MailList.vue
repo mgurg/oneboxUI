@@ -1,14 +1,8 @@
 <template>
-  <div class="fit">
-
-    <q-list bordered class="rounded-borders" style="min-height: 70vh;">
-      <q-item-label header> Page: {{ page }} Total: {{ totalPages }}</q-item-label>
-      <q-item-label>
-        <mail-folders/>
-      </q-item-label>
-
-
-      <div ref="scrollTargetRef" class="q-pa-md" style="max-height: 80vh; overflow: auto;">
+  Page: {{ page }} Total: {{ totalPages }}
+  <mail-folders/>
+    <q-list>
+      <div ref="scrollTargetRef" class="q-pa-md" style="overflow: auto;">
         <q-infinite-scroll :offset="250" :scroll-target="scrollTargetRef" @load="onLoadRef">
 
 
@@ -79,7 +73,7 @@
     </q-list>
 
 
-  </div>
+
 
 
 </template>

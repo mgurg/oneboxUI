@@ -165,9 +165,6 @@ const deleteEmail = async (eid) => {
   const {data} = await api.delete(`http://localhost:3000/v1/account/MGU_123/message/${eid}`)
   console.log(data)
 };
-
-
-
 </script>
 
 

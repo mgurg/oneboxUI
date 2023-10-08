@@ -1,15 +1,15 @@
 <template>
   <q-page>
 
-    <div class="row full-width full-height items-stretch">
-      <div class="col column no-wrap items-stretch bg-amber-1 fit">
-        <q-list bordered class="rounded-borders" separator style="height: calc(100vh - 55px)">
-          <q-item>s</q-item>
-          <q-item>s</q-item>
-          <q-item>s</q-item>
-        </q-list>
+    <div class="row no-wrap">
+      <div class="col-2 bg-grey-1">
+        <div class="column" style="height: calc(100vh - 55px); overflow: auto;">
+          <div class="col-auto">
+            <mail-list/>
+          </div>
+        </div>
       </div>
-      <div class="col bg-amber-2 fit">
+      <div class="col-8 bg-amber-2">
         <div class="column" style="height: calc(100vh - 55px)">
           <div class="col-auto">
             <q-card :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'" bordered class="my-card" flat>
@@ -68,7 +68,7 @@
 
         <!--        </div>-->
       </div>
-      <div class="col bg-amber-12 fit">
+      <div class="col-2 bg-amber-12 fit">
         <div class="rounded-borders" style="height: calc(100vh - 55px)">C</div>
       </div>
     </div>
@@ -76,4 +76,5 @@
 </template>
 
 <script setup>
+import MailList from "components/Mail/MailList.vue";
 </script>
