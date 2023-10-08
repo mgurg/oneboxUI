@@ -1,5 +1,6 @@
 <template>
-    <div  class="fit" style="border: #1D1D1D 1px;">
+  <div class="column" style="height: calc(100vh - 55px)">
+    <div class="col-auto">
     <q-card v-if="messageDetails!==null" bordered flat class="full-height">
       <q-card-section vertical>
         <div class="row">
@@ -52,10 +53,13 @@
       </q-card-section>
 
       <q-card-section>
-        <iframe :srcdoc="messageDetails.text.html" style="width: 100%; height: 60vh; border: #ffffff"></iframe>
+
       </q-card-section>
     </q-card>
-
+    </div>
+    <div class="col">
+      <iframe v-if="messageDetails!==null" :srcdoc="messageDetails.text.html" style="width: 100%; height: 100%; border: #ffffff"></iframe>
+    </div>
 
     <!--  -->
     <!--  <q-card bordered no-shadow class="card_style q-mt-md">-->
