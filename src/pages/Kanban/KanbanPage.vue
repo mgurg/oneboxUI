@@ -14,9 +14,18 @@
           :key="element.name"
           class="q-ma-md list-group-item"
         >
-          <q-card-section>
-            {{ element.name }} {{ index }}
-          </q-card-section>
+          <q-item-section class="q-pa-md">
+            <q-item-label class="text-body2 text-blue-grey-14">{{ index }}</q-item-label>
+            <q-item-label lines="2" class="text-body2 text-blue-grey-10">{{ element.name }} </q-item-label>
+            <q-item-label class="q-gutter-xs text-blue-grey-13">
+              <q-icon size="xs" name="person"/>
+              <q-icon size="xs" name="attach_file"/>
+              <q-icon size="xs" name="local_offer"/>
+              <q-icon size="xs" name="event"/>
+              <q-icon size="xs" name="circle"/>
+            </q-item-label>
+            <q-btn flat dense class="q-mt-md">Podgląd</q-btn>
+          </q-item-section>
         </q-card>
       </draggable>
     </div>
@@ -36,9 +45,18 @@
           :key="element.name"
           class="q-ma-md list-group-item"
         >
-          <q-card-section>
-            {{ element.name }} {{ index }}
-          </q-card-section>
+          <q-item-section class="q-pa-md">
+            <q-item-label class="text-body2 text-blue-grey-14">{{ index }}</q-item-label>
+            <q-item-label lines="2" class="text-body2 text-blue-grey-10">{{ element.name }} </q-item-label>
+            <q-item-label class="q-gutter-xs text-blue-grey-13">
+              <q-icon size="xs" name="person"/>
+              <q-icon size="xs" name="attach_file"/>
+              <q-icon size="xs" name="local_offer"/>
+              <q-icon size="xs" name="event"/>
+              <q-icon size="xs" name="circle"/>
+            </q-item-label>
+            <q-btn flat dense class="q-mt-md">Podgląd</q-btn>
+          </q-item-section>
         </q-card>
 
       </draggable>
@@ -63,10 +81,10 @@ const name = "two-lists";
 const display = "Two Lists";
 const order = 1;
 const list1 = ref([
-  {name: "John", id: 1},
-  {name: "Joao", id: 2},
-  {name: "Jean", id: 3},
-  {name: "Gerard", id: 4}
+  {name: "🇵🇹 Portuguese Flannel: tysiąc i jedna koszula", id: 1},
+  {name: "KFN: Odnośnie referendum (lepszy link)", id: 2},
+  {name: "To produkt, którego szukasz 🔍\"Botanical Origin Spray Czyszczący Pomarańcz 0,5l\"", id: 3},
+  {name: "[GitHub] A fine-grained personal access token has been regenerated for your account", id: 4}
 ])
 
 const list2 = ref([
