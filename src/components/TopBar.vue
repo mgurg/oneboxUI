@@ -3,7 +3,8 @@
     <template v-slot:avatar>
       <q-icon color="warning" name="warning"/>
     </template>
-    Wersja testowa Dev
+<!--    Wersja testowa Dev-->
+    Your Inbox contains 20 items 6 of them are here for more than week. Make sure you process your inbox soon.
   </q-banner>
 </template>
 

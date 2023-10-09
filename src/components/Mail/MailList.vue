@@ -4,9 +4,14 @@
   <q-list>
     <div ref="scrollTargetRef" class="q-pa-md" style="overflow: auto;">
       <q-infinite-scroll :offset="250" :scroll-target="scrollTargetRef" @load="onLoadRef">
-        <div v-for="(message, index) in messages" v-if="messages != null" v-bind:key="message.id" :class="{'bg-blue-1' : selectedMailId === message.id}">
+        <div
+          v-for="(message, index) in messages"
+          v-if="messages != null"
+          v-bind:key="message.id"
+          :class="{'bg-blue-1' : selectedMailId === message.id}"
+        >
 
-          <q-item clickable @click="selectMail(message.id)" class="q-ma-xs q-pa-xs" >
+          <q-item :clickable="selectedMailId !== message.id" @click="selectMail(message.id)" class="q-ma-xs q-pa-xs" >
             <q-item-section>
               <q-item-label class="text-body2 text-blue-grey-14">{{ message.from.name }}</q-item-label>
               <q-item-label lines="2" class="text-body2 text-blue-grey-10">{{ message.subject }}</q-item-label>
