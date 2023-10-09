@@ -140,6 +140,7 @@ import {useUserApi} from "src/composables/api/mailApi";
 import {useMailStore} from "stores/mail-store";
 import {storeToRefs} from "pinia";
 
+
 const mailStore = useMailStore()
 
 const {mailId} = storeToRefs(mailStore)
@@ -160,6 +161,8 @@ const fetchMessage = async (eid) => {
 };
 
 const deleteEmail = async (eid) => {
+
+  await mailStore.setMailIdToDelete(eid);
   const {data} = await api.delete(`http://localhost:3000/v1/account/MGU_123/message/${eid}`)
   console.log(data)
 };

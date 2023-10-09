@@ -83,14 +83,23 @@
 </template>
 
 <script setup>
-import {computed, onBeforeMount, ref} from 'vue'
+import {computed, onBeforeMount, ref, watch} from 'vue'
 import {useUserApi} from "src/composables/api/mailApi";
 import MailFolders from "components/Mail/MailFolders.vue";
 import {useMailStore} from "stores/mail-store";
+import {storeToRefs} from "pinia";
 
 const store = useMailStore()
 
-const itemsRef = ref([{}, {}, {}, {}, {}, {}, {}])
+
+const {mailIdToDelete} = storeToRefs(store)
+
+watch(mailIdToDelete, () => {
+  console.log('mailId ref changed, delete something!' + mailIdToDelete.value)
+  const result = messages.value.filter(message => message.id !== mailIdToDelete.value);
+  messages.value = result;
+})
+
 const scrollTargetRef = ref(null)
 
 const messages = ref([]);
@@ -100,21 +109,10 @@ const totalMessages = ref(0);
 
 function onLoadRef(index, done) {
   setTimeout(() => {
-    itemsRef.value.push({}, {}, {}, {}, {}, {}, {})
-
-    console.log(index)
     loadMore()
     done()
   }, 2000)
 }
-
-
-// function onLoadId(index, done) {
-//   setTimeout(() => {
-//     itemsId.value.push({}, {}, {}, {}, {}, {}, {})
-//     done()
-//   }, 2000)
-// }
 
 
 const api = useUserApi();
@@ -125,9 +123,16 @@ const totalPages = computed(() => Math.ceil(totalMessages.value / pageSize));
 const offset = 0;
 const fetchMessages = async () => {
   // Make an API request to your endpoint
+
   const {data} = await api.get(`http://localhost:3000/v1/account/MGU_123/messages?path=INBOX&page=${page.value}&pageSize=${pageSize}&documentStore=false`)
   totalMessages.value = data.total;
   return data
+
+
+  // PINIA
+  // await store.setMailList('MGU_123', page.value, pageSize)
+  // totalMessages.value = await store.getTotalMessages;
+  // return await store.getMailList;
 };
 
 const loadMore = async () => {

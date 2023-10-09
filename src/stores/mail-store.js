@@ -4,10 +4,11 @@ export const useMailStore = defineStore('mail', {
   state: () => ({
     mailId: null,
     mailbox: 'INBOX',
-    mailList: []
+    mailIdToDelete: null
   }),
   getters: {
     getMailId: (state) => state.mailId,
+    getMailIdToDelete: (state) => state.mailIdToDelete,
     getMailbox: (state) => state.mailbox,
 
   },
@@ -18,8 +19,8 @@ export const useMailStore = defineStore('mail', {
     setMailbox(name) {
       this.mailbox = name;
     },
-    setMailList(list){
-      this.mailList = list;
-    }
+    setMailIdToDelete(id) {
+      this.mailIdToDelete = id;
+    },
   },
 });
