@@ -146,7 +146,6 @@ const mailStore = useMailStore()
 const {mailId} = storeToRefs(mailStore)
 
 watch(mailId, () => {
-  console.log('mailId ref changed, do something!' + mailId.value)
   fetchMessage(mailId.value);
 })
 

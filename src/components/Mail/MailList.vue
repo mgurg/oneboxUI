@@ -4,35 +4,9 @@
   <q-list>
     <div ref="scrollTargetRef" class="q-pa-md" style="overflow: auto;">
       <q-infinite-scroll :offset="250" :scroll-target="scrollTargetRef" @load="onLoadRef">
-        <div v-for="(message, index) in messages" v-if="messages != null" v-bind:key="message.id">
+        <div v-for="(message, index) in messages" v-if="messages != null" v-bind:key="message.id" :class="{'bg-blue-1' : selectedMailId === message.id}">
 
-          <!--            <q-item clickable @click="saveMailId(message.id)">-->
-          <!--              <q-item-section avatar top>-->
-          <!--                <q-avatar color="primary" rounded text-color="white">JA</q-avatar>-->
-          <!--              </q-item-section>-->
-          <!--              <q-item-section top>-->
-          <!--                <q-item-label lines="1">-->
-          <!--                  <span class="text-weight-medium">{{ message.subject }}</span>-->
-          <!--                </q-item-label>-->
-          <!--                <q-item-label lines="2">-->
-          <!--                  Wejdź na nasz fanpage i polub Zwoltex! Śledź nasze nowości i bądź z na bieżąco z promocjami.-->
-          <!--                </q-item-label>-->
-          <!--                <q-item-label lines="1">-->
-          <!--                  <span class="text-grey-8">{{ message.from.name }}</span>-->
-          <!--                </q-item-label>-->
-          <!--                <q-item-label class="q-mt-xs text-body2 text-weight-bold text-primary text-uppercase" lines="1">-->
-          <!--                </q-item-label>-->
-          <!--              </q-item-section>-->
-          <!--              <q-item-section side top>-->
-          <!--                <div class="text-grey-8 q-gutter-xs">-->
-          <!--                  <q-btn class="gt-xs" dense flat icon="delete" round size="12px"/>-->
-          <!--                  <q-btn class="gt-xs" dense flat icon="done" round size="12px"/>-->
-          <!--                  <q-btn dense flat icon="more_vert" round size="12px"/>-->
-          <!--                </div>-->
-          <!--              </q-item-section>-->
-          <!--            </q-item>-->
-
-          <q-item clickable @click="saveMailId(message.id)" class="q-ma-xs q-pa-xs">
+          <q-item clickable @click="selectMail(message.id)" class="q-ma-xs q-pa-xs" >
             <q-item-section>
               <q-item-label class="text-body2 text-blue-grey-14">{{ message.from.name }}</q-item-label>
               <q-item-label lines="2" class="text-body2 text-blue-grey-10">{{ message.subject }}</q-item-label>
@@ -95,7 +69,6 @@ const store = useMailStore()
 const {mailIdToDelete} = storeToRefs(store)
 
 watch(mailIdToDelete, () => {
-  console.log('mailId ref changed, delete something!' + mailIdToDelete.value)
   const result = messages.value.filter(message => message.id !== mailIdToDelete.value);
   messages.value = result;
 })
@@ -106,6 +79,7 @@ const messages = ref([]);
 const page = ref(0);
 const pageSize = 5;
 const totalMessages = ref(0);
+const selectedMailId = ref(null);
 
 function onLoadRef(index, done) {
   setTimeout(() => {
@@ -144,7 +118,8 @@ const loadMore = async () => {
 };
 
 
-function saveMailId(id) {
+function selectMail(id) {
+  selectedMailId.value = id;
   store.setMailId(id);
   console.log(id)
 }
@@ -155,3 +130,11 @@ onBeforeMount(() => {
 
 
 </script>
+
+<style lang="scss">
+.done{
+  .q-item__label{
+
+  }
+}
+</style>
