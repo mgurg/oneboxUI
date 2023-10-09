@@ -1,64 +1,58 @@
 <template>
   <div class="column" style="height: calc(100vh - 70px)">
     <div class="col-auto">
-    <q-card v-if="messageDetails!==null" bordered flat class="full-height">
-      <q-card-section vertical>
-        <div class="row">
-          <div class="col">
+      <q-card v-if="messageDetails!==null" bordered class="full-height" flat>
+        <q-card-section vertical>
+          <div class="row">
             <div class="text-h6">{{ messageDetails.subject }}</div>
-            <div class="text-caption text-grey-8">Od: {{ messageDetails.from.address }}</div>
-            <div class="text-caption text-grey-8">Do: {{ messageDetails.to[0].address }}</div>
           </div>
-          <div class="col-auto">
-            <div class="text-grey-8 q-gutter-xs">
-              <q-avatar color="primary" rounded size="md" text-color="white">JA</q-avatar>
-              <q-btn class="gt-xs" size="12px" flat dense round icon="delete" @click="deleteEmail(messageDetails.id)" />
-              <q-btn class="gt-xs" size="12px" flat dense round icon="done" />
-              <q-btn size="12px" flat dense round icon="more_vert" >
-                <q-menu auto-close cover>
-                  <q-list>
-                    <q-item clickable>
-                      <q-item-section>Remove Card</q-item-section>
-                    </q-item>
-                    <q-item clickable>
-                      <q-item-section>Send Feedback</q-item-section>
-                    </q-item>
-                    <q-item clickable>
-                      <q-item-section>Share</q-item-section>
-                    </q-item>
-                  </q-list>
-                </q-menu>
-              </q-btn>
+        </q-card-section>
+        <q-card-section vertical>
+
+          <div class="row">
+            <div class="col">
+              <div class="text-caption text-grey-8">Od:
+                <q-btn dense flat no-caps>{{ messageDetails.from.address }}</q-btn>
+              </div>
+              <div class="text-caption text-grey-8">Do:
+                <q-btn dense flat no-caps>{{ messageDetails.to[0].address }}</q-btn>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="text-grey-8 q-gutter-xs">
+                <q-btn class="gt-xs" dense flat icon="reply" round size="12px"/>
+                <q-btn class="gt-xs" dense flat icon="delete" round size="12px"
+                       @click="deleteEmail(messageDetails.id)"/>
+                <q-btn class="gt-xs" dense flat icon="done" round size="12px"/>
+                <q-btn dense flat icon="more_vert" round size="12px">
+                  <q-menu auto-close cover>
+                    <q-list>
+                      <q-item clickable>
+                        <q-item-section>Odpowiedz</q-item-section>
+                      </q-item>
+                      <q-item clickable>
+                        <q-item-section>Przekaż dalej</q-item-section>
+                      </q-item>
+                      <q-separator/>
+                      <q-item clickable>
+                        <q-item-section>Usuń</q-item-section>
+                      </q-item>
+                      <q-item clickable>
+                        <q-item-section>Drukuj</q-item-section>
+                      </q-item>
+                    </q-list>
+                  </q-menu>
+                </q-btn>
+              </div>
             </div>
           </div>
-        </div>
-      </q-card-section>
-      <q-card-section class="row q-pa-xs" vertical>
-        <div class="q-pa-xs">
-          <div class="q-gutter-xs">
-            <q-chip color="primary" icon="cake" removable text-color="white">
-              Ice cream
-            </q-chip>
-            <q-chip color="teal" icon="cake" removable text-color="white">
-              Eclair
-            </q-chip>
-            <q-chip color="orange" icon="cake" removable text-color="white">
-              Cupcake
-            </q-chip>
-            <q-chip color="red" disable icon="cake" removable text-color="white">
-              Gingerbread (disable)
-            </q-chip>
-          </div>
-        </div>
-      </q-card-section>
+        </q-card-section>
 
-      <q-card-section>
-
-      </q-card-section>
-    </q-card>
+      </q-card>
     </div>
     <div class="col">
-      <iframe v-if="messageDetails!==null" :srcdoc="messageDetails.text.html" style="width: 100%; height: 100%; border: #ffffff; background-color: #ffffff;"></iframe>
+      <iframe v-if="messageDetails!==null" :srcdoc="messageDetails.text.html"
+              style="width: 100%; height: 100%; border: #ffffff; background-color: #ffffff;"></iframe>
     </div>
 
     <!--  -->
@@ -128,14 +122,14 @@
     <!--  </q-card>-->
 
 
-<!--    <q-card v-if="messageDetails!==null" bordered flat >-->
-<!--      <q-card-section>-->
-<!--        <iframe :srcdoc="messageDetails.text.html" style="width: 100%; height: 50vh; border: #dddddd"></iframe>-->
-<!--      </q-card-section>-->
-<!--    </q-card>-->
+    <!--    <q-card v-if="messageDetails!==null" bordered flat >-->
+    <!--      <q-card-section>-->
+    <!--        <iframe :srcdoc="messageDetails.text.html" style="width: 100%; height: 50vh; border: #dddddd"></iframe>-->
+    <!--      </q-card-section>-->
+    <!--    </q-card>-->
 
 
-    </div>
+  </div>
 
 </template>
 
