@@ -163,6 +163,10 @@ const deleteEmail = async (eid) => {
 
   await mailStore.setMailIdToDelete(eid);
   const {data} = await api.delete(`http://localhost:3000/v1/account/MGU_123/message/${eid}`)
+
+  const newSelection = mailStore.getNextMailId;
+  console.log("newSelection:" + newSelection)
+  mailStore.setMailId(newSelection)
   console.log(data)
 };
 </script>

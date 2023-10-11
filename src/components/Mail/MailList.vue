@@ -10,8 +10,8 @@
           v-bind:key="message.id"
           :class="{'bg-blue-1' : selectedMailId === message.id}"
         >
-
-          <q-item :clickable="selectedMailId !== message.id" @click="selectMail(message.id)" class="q-ma-xs q-pa-xs" >
+<!--          :clickable="selectedMailId !== message.id"-->
+          <q-item clickable  @click="selectMail(message.id, index)" class="q-ma-xs q-pa-xs" >
             <q-item-section>
               <q-item-label class="text-body2 text-blue-grey-14">{{ message.from.name }}</q-item-label>
               <q-item-label lines="2" class="text-body2 text-blue-grey-10">{{ message.subject }}</q-item-label>
@@ -78,6 +78,12 @@ watch(mailIdToDelete, () => {
   messages.value = result;
 })
 
+const {mailId} = storeToRefs(store)
+
+watch(mailId, () => {
+  selectedMailId.value = mailId;
+})
+
 const scrollTargetRef = ref(null)
 
 const messages = ref([]);
@@ -123,10 +129,12 @@ const loadMore = async () => {
 };
 
 
-function selectMail(id) {
+async function selectMail(id, index) {
   selectedMailId.value = id;
-  store.setMailId(id);
-  console.log(id)
+  await store.setMailId(id);
+  await store.setNextMailId(messages.value[index + 1].id)
+  console.log('Current: ' + id)
+  console.log('Next: ' + messages.value[index + 1].id)
 }
 
 onBeforeMount(() => {
