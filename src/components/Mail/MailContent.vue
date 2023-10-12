@@ -12,7 +12,34 @@
           <div class="row">
             <div class="col">
               <div class="text-caption text-grey-8">Od:
-                <q-btn dense flat no-caps>{{ messageDetails.from.address }}</q-btn>
+                <q-btn dense flat no-caps>{{ messageDetails.from.address }}
+                  <q-menu>
+                    <div class="row no-wrap q-pa-md">
+                      <div class="column">
+                        <div class="text-h6 q-mb-md">Settings</div>
+                        AAAA
+                      </div>
+
+                      <q-separator class="q-mx-lg" inset vertical/>
+
+                      <div class="column items-center">
+                        <q-avatar size="72px">
+                          <img src="https://cdn.quasar.dev/img/avatar4.jpg">
+                        </q-avatar>
+
+                        <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div>
+
+                        <q-btn
+                          v-close-popup
+                          color="primary"
+                          label="Logout"
+                          push
+                          size="sm"
+                        />
+                      </div>
+                    </div>
+                  </q-menu>
+                </q-btn>
               </div>
               <div class="text-caption text-grey-8">Do:
                 <q-btn dense flat no-caps>{{ messageDetails.to[0].address }}</q-btn>

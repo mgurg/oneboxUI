@@ -36,3 +36,4 @@ yarn-error.log*
 
 # local .env.local.develop files
 .env.local.develop
+.env.production

@@ -1,5 +1,5 @@
 <template>
-  Page: {{ page }} Total: {{ totalPages }}
+  Page: {{ page }} Total: {{ totalPages }} Selected {{selectedMailId}}
   <mail-folders/>
   <q-list>
     <div ref="scrollTargetRef" class="q-pa-md" style="overflow: auto;">
@@ -10,8 +10,8 @@
           v-bind:key="message.id"
           :class="{'bg-blue-1' : selectedMailId === message.id}"
         >
-<!--          :clickable="selectedMailId !== message.id"-->
-          <q-item clickable  @click="selectMail(message.id, index)" class="q-ma-xs q-pa-xs" >
+
+          <q-item clickable :clickable="selectedMailId !== message.id"  @click="selectMail(message.id, index)" class="q-ma-xs q-pa-xs" >
             <q-item-section>
               <q-item-label class="text-body2 text-blue-grey-14">{{ message.from.name }}</q-item-label>
               <q-item-label lines="2" class="text-body2 text-blue-grey-10">{{ message.subject }}</q-item-label>
@@ -74,14 +74,13 @@ const store = useMailStore()
 const {mailIdToDelete} = storeToRefs(store)
 
 watch(mailIdToDelete, () => {
-  const result = messages.value.filter(message => message.id !== mailIdToDelete.value);
-  messages.value = result;
+  messages.value = messages.value.filter(message => message.id !== mailIdToDelete.value);
 })
 
 const {mailId} = storeToRefs(store)
 
 watch(mailId, () => {
-  selectedMailId.value = mailId;
+  selectedMailId.value = mailId.value;
 })
 
 const scrollTargetRef = ref(null)
@@ -129,11 +128,12 @@ const loadMore = async () => {
 };
 
 
-async function selectMail(id, index) {
+function selectMail(id, index) {
+  console.log('Raw: ' + id)
   selectedMailId.value = id;
-  await store.setMailId(id);
-  await store.setNextMailId(messages.value[index + 1].id)
-  console.log('Current: ' + id)
+  store.setMailId(id);
+  store.setNextMailId(messages.value[index + 1].id)
+  console.log('Current: ' + selectedMailId.value)
   console.log('Next: ' + messages.value[index + 1].id)
 }
 
