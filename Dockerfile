@@ -1,4 +1,5 @@
-FROM node:18-bookworm-slim as build-stage
+#FROM node:18-bookworm-slim as build-stage
+FROM oven/bun as build-stage
 
 # create work direction
 RUN mkdir -p /usr/src/web
@@ -7,11 +8,13 @@ WORKDIR /usr/src/web
 
 COPY . .
 
-RUN npm config set registry https://registry.npmmirror.com
-RUN npm install
-RUN npm install @quasar/cli -g
+# RUN npm config set registry https://registry.npmmirror.com
+# RUN npm install
+# RUN npm install @quasar/cli -g
+RUN bun install
+RUN bun install -g @quasar/cli
 
-RUN quasar build
+RUN bun run quasar build
 
 FROM nginx:1.25-alpine-slim as production-stage
 
